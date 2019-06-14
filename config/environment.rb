@@ -9,10 +9,6 @@ ActiveRecord::Base.establish_connection(
 )
 
 require_relative "../app/controllers/application_controller.rb"
-#require_relative "../app/models/figure.rb"
-#require_relative "../app/models/figure_title.rb"
-#require_relative "../app/models/landmark.rb"
-#require_relative "../app/models/title.rb"
 
 Dir[File.join(File.dirname(__FILE__), "../app/models", "*.rb")].each {|f| require f}
 Dir[File.join(File.dirname(__FILE__), "../app/controllers", "*.rb")].sort.each {|f| require f}
