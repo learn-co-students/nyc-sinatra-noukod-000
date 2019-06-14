@@ -1,5 +1,4 @@
-class CreateFigure_titles < ActiveRecord::Migration
-  #raise 'Write CreateLandmarks migration here'
+class CreateFigureTitles < ActiveRecord::Migration
   def up 
     create_table :figure_titles do |t|
       t.integer :title_id 

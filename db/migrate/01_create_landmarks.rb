@@ -1,5 +1,4 @@
 class CreateLandmarks < ActiveRecord::Migration
-  #raise 'Write CreateLandmarks migration here'
   def up 
     create_table :landmarks do |t|
       t.string :name 
