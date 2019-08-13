@@ -22,7 +22,7 @@ describe LandmarksController do
   it "allows you to create a new landmark" do
     visit '/landmarks/new'
     fill_in :landmark_name, :with => "Arc de Triomphe"
-    fill_in :landmark_year_completed, :with => 1806
+    fill_in :year_completed, :with => 1806
     click_button "Create New Landmark"
     expect(Landmark.all.count).to eq(2)
   end
@@ -50,8 +50,8 @@ describe LandmarksController do
 
     expect(last_response.status).to eq(200)
     expect(last_response.body).to include('<form')
-    expect(last_response.body).to include('landmark[name]')
-    expect(last_response.body).to include('landmark[year_completed]')
+    expect(last_response.body).to include('Landmark[name]')
+    expect(last_response.body).to include('Landmark[year_completed]')
     expect(last_response.body).to include(@landmark.name)
     expect(last_response.body).to include(@landmark.year_completed.to_s)
 
@@ -62,15 +62,15 @@ describe LandmarksController do
     @original_landmark = Landmark.first
 
     visit "/landmarks/#{@original_landmark.id}/edit"
-    fill_in :name, with: "BQE!!!!"
-    fill_in :year_completed, with: 9999
+    fill_in :landmark_name, with: "BQE!!!!"
+    fill_in :landmark_year, with: 9999
     click_button "Edit Landmark"
 
     expect(page.body).to include("BQE!!!!")
     expect(page.body).to include("9999")
 
     @updated_landmark = Landmark.first
-    expect(page.current_path).to eq("/landmarks/#{@original_landmark.id}")
+    expect(page.current_path).to eq("/landmarks")
     expect(@updated_landmark.name).to eq("BQE!!!!")
     expect(@updated_landmark.year_completed.to_s).to eq("9999")
   end
